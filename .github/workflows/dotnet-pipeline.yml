@@ -2,9 +2,9 @@ name: .NET
 
 on:
     push:
-      branches: [ "master" ]
+      branches: [ "main" ]
     pull_request:
-      branches: [ "master" ]
+      branches: [ "main" ]
       
     workflow_dispatch:
   
@@ -26,7 +26,13 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
       
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3.1.0
+    - name: Dotnet Publish
+      uses: EasyDesk/action-dotnet-publish@v1.0.0
       with:
-        path: '$(Build.ArtifactStagingDirectory)'
+        path: . # optional, default is .
+    # Directory where all packages will be put (default value is 'packages').
+        output-dir: packages # optional, default is packages
+    # Build configuration for the build (default value is 'Release').
+        build-configuration: Release # optional, default is Release
+    # Whether to skip the build using the --no-build flag (default value is 'true').
+        skip-build: true # optional, default is true

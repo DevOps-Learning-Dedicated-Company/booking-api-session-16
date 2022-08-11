@@ -11,7 +11,7 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -27,12 +27,4 @@ jobs:
       run: dotnet test --no-build --verbosity normal
       
     - name: Dotnet Publish
-      uses: EasyDesk/action-dotnet-publish@v1.0.0
-      with:
-        path: . # optional, default is .
-    # Directory where all packages will be put (default value is 'packages').
-        output-dir: packages # optional, default is packages
-    # Build configuration for the build (default value is 'Release').
-        build-configuration: Release # optional, default is Release
-    # Whether to skip the build using the --no-build flag (default value is 'true').
-        skip-build: true # optional, default is true
+      run: dotnet publish .

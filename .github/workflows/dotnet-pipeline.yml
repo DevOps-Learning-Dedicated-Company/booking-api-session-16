@@ -28,7 +28,7 @@ jobs:
       
     - name: Docker commands
       run: |
-          docker login --username parteg132 --password ${{ DOCKER_PASS }}
+          docker login --username parteg132 --password ${{ secrets.DOCKER_PASS }}
           docker build . -t parteg132/booking-api-actions
           docker image push parteg132/booking-api-actions
       

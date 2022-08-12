@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
 
 variables:
   solution: '**/*.sln'
@@ -15,23 +15,16 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: VSBuild@1
-  inputs:
-    vsVersion: '17.0'
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
     version: '6.x'
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      dotnet restore
+      dotnet build
 
 - task: NuGetToolInstaller@1
 

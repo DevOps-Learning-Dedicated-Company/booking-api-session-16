@@ -26,5 +26,11 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
       
+    - name: Docker commands
+      run: |
+          docker login --username parteg132 --password ${{ DOCKER_PASS }}
+          docker build . -t parteg132/booking-api-azure
+          docker image push parteg132/booking-api-azure
+      
     - name: Dotnet Publish
       run: dotnet publish .

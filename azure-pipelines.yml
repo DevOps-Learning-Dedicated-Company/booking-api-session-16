@@ -37,8 +37,8 @@ steps:
   inputs:
     script: |
       docker login --username parteg132 --password $XD
-      docker build . -t parteg132/catalog-api-image
-      docker image push parteg132/catalog-api-image
+      docker build . -t parteg132/booking-api-azure
+      docker image push parteg132/booking-api-azure
   env:
     XD: $(DOCKER_PASS) 
 

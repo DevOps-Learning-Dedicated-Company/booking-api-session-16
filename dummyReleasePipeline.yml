@@ -8,7 +8,7 @@ resources:
   - pipeline: booking-api-build # Name of the pipeline resource.
     source: booking-api-build # The name of the pipeline referenced by this pipeline resource.
     project: az-and-devops # Required only if the source pipeline is in another project
-    trigger: true # Run app-ci pipeline when any run of security-lib-ci completes
+    trigger: true # Run app-ci pipeline when any run of booking-api-build completes
 
 pool:
   vmImage: 'ubuntu-latest'

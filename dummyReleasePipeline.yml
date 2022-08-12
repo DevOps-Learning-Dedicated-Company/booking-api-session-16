@@ -5,8 +5,8 @@
 
 resources:
   pipelines:
-  - pipeline: booking-api-build # Name of the pipeline resource.
-    source: booking-api-build # The name of the pipeline referenced by this pipeline resource.
+  - pipeline: booking-api # Name of the pipeline resource.
+    source: booking-api # The name of the pipeline referenced by this pipeline resource.
     project: az-and-devops # Required only if the source pipeline is in another project
     trigger: true # Run app-ci pipeline when any run of booking-api-build completes
 

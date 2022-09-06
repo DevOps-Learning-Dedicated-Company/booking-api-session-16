@@ -33,7 +33,7 @@ jobs:
           docker image push parteg132/booking-api-actions
       
     - name: Dotnet Publish
-      run: dotnet publish . -o ${{env.DOTNET_ROOT}}/dotnetatrifacts
+      run: dotnet publish -o ${{env.DOTNET_ROOT}}/dotnetatrifacts
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:

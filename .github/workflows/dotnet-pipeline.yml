@@ -24,7 +24,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test
       
     - name: Docker commands
       run: |
@@ -33,4 +33,9 @@ jobs:
           docker image push parteg132/booking-api-actions
       
     - name: Dotnet Publish
-      run: dotnet publish .
+      run: dotnet publish . -o ${{env.DOTNET_ROOT}}/dotnetatrifacts
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v2
+      with:
+          name: dotnetapp
+          path: ${{env.DOTNET_ROOT}}/dotnetartifacts

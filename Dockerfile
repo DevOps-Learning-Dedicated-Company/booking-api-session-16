@@ -7,10 +7,7 @@
   RUN dotnet restore
   RUN dotnet publish -o out
   
-  FROM mcr.microsoft.com/dotnet/aspnet:5.0
-  
-  WORKDIR /App
-  
-  COPY . .
-  
+  FROM mcr.microsoft.com/dotnet/aspnet:6.0
+  WORKDIR /app
+  COPY --from=build-env /app/out .
   ENTRYPOINT ["dotnet", "Booking.Server.API.dll"]

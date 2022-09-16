@@ -1,13 +1,10 @@
-  # syntax=docker/dockerfile:1
-  FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
-  WORKDIR /app
-  
-  COPY . .
-  
-  RUN dotnet restore
-  RUN dotnet publish -c Release -o out
-  
-  FROM mcr.microsoft.com/dotnet/aspnet:6.0
-  WORKDIR /app
-  COPY --from=build-env /app/out .
-  ENTRYPOINT ["dotnet", "Booking.Server.API.dll"]
+FROM ubuntu:20.04
+
+
+RUN apt-get update
+RUN apt-get install -y wget
+RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+RUN dpkg -i packages-microsoft-prod.deb
+RUN rm packages-microsoft-prod.deb
+RUN apt-get update
+RUN apt-get install -y dotnet-sdk-6.0

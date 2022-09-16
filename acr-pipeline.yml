@@ -9,7 +9,7 @@ trigger:
 pool: Default
 
 container:
-  image: armcontainerregistry01.azurecr.io:dotnetsdk
+  image: armcontainerregistry01.azurecr.io/dotnetsdk:tobepushed
   endpoint: containerRegistry
 
 variables:
